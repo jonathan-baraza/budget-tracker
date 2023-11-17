@@ -46,7 +46,7 @@ const SideMenu = () => {
           <IoMdNotificationsOutline size={22} color={"#6d87cb"} />
           <div className="text-[#6d87cb]">Notifications</div>
         </div>
-        <div className="flex flex-col pt-16  bg-green-400">
+        <div className="flex flex-col pt-20 space-y-4 ">
           <div className="flex items-center  space-x-3">
             <IoMdInformationCircleOutline size={22} color={"#6d87cb"} />
             <div className="text-[#6d87cb]">About</div>
@@ -55,7 +55,6 @@ const SideMenu = () => {
             <IoSettingsOutline size={22} color={"#6d87cb"} />
             <div className="text-[#6d87cb]">Settings</div>
           </div>
-         
         </div>
       </div>
     </div>
