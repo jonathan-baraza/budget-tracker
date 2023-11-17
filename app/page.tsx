@@ -1,9 +1,16 @@
-import Image from "next/image";
+"use client";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import {
+  addTransaction,
+  deleteTransaction,
+} from "@/redux/features/budgetSlice";
 
 export default function Home() {
+  const { balance, transactions } = useAppSelector((state) => state.budget);
+  const dispatch = useAppDispatch();
   return (
     <main>
-      <h2 className="m-4 text-xl font-bold">Budget tracker app.</h2>
+     
     </main>
   );
 }
