@@ -31,6 +31,11 @@ const budgetSlice = createSlice({
       } else {
         state.transactions = [action.payload];
       }
+      if (action.payload.type === "Expense") {
+        state.balance = state.balance - action.payload.amount;
+      } else {
+        state.balance = state.balance + action.payload.amount;
+      }
     },
     deleteTransaction: (state, action) => {
       state.balance = state.balance - 20;

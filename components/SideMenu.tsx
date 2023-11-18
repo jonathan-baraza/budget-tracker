@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { GrAppsRounded } from "react-icons/gr";
 import { FaChartPie } from "react-icons/fa";
@@ -8,14 +9,18 @@ import {
   IoMdInformationCircleOutline,
 } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
+import { useAppSelector } from "@/redux/hooks";
 
 const SideMenu = () => {
+  const { balance } = useAppSelector((state) => state.budget);
   return (
     <div className=" w-1/6  bg-[#06112f] h-screen">
       {/* Current balance */}
       <div className="w-full flex justify-center pt-4">
         <div className="bg-[#13224a] text-white p-4 space-y-3 rounded-lg w-fit m-3 flex items-center justify-center flex-col">
-          <div className="text-2xl font-bold">Kes 25,650</div>
+          <div className="text-2xl font-bold">
+            Ksh {balance.toLocaleString()}/=
+          </div>
           <div className="text-sm ">Current balance</div>
         </div>
       </div>

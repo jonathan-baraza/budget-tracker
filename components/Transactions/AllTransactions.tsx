@@ -25,6 +25,7 @@ const AllTransactions = () => {
         <table className="w-full">
           <thead className="bg-[#0f1a3a] p-2 text-gray-200 text-xs">
             <tr>
+              <td className=" px-2 py-1">NO.</td>
               <td className=" px-2 py-1">AMOUNT</td>
               <td className="text-end  pl-2 pr-4 py-1">PAYMENT TYPE</td>
               <td className=" pl-6 pr-2 py-1">PAYMENT DATE</td>
@@ -34,9 +35,10 @@ const AllTransactions = () => {
           </thead>
           <tbody>
             {transactions &&
-              transactions.map((transaction) => (
+              transactions.map((transaction, index) => (
                 <TransactionItem
                   key={transaction.id}
+                  no={index + 1 + ""}
                   transaction={transaction}
                 />
               ))}

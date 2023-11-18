@@ -6,15 +6,24 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { getDateTime } from "@/utils/getDateTime";
 import { transactionType } from "@/redux/features/budgetSlice";
 
-const TransactionItem = ({ transaction:{name,amount,type,date,id} }: { transaction: transactionType }) => {
+const TransactionItem = ({
+  transaction: { name, amount, type, date, id },
+  no,
+}: {
+  transaction: transactionType;
+  no: string;
+}) => {
   const [isIncome, setIsIncome] = useState<boolean>(true);
 
   return (
     <tr className="border-b border-gray-300">
+      <td className="px-2 py-1 ">{no}</td>
       <td className="px-2 py-1 ">
         <div className="flex space-x-1">
           <GiCash />
-          <span className="text-xs font-bold">Ksh {amount}</span>
+          <span className="text-xs font-bold">
+            Ksh {amount.toLocaleString()}
+          </span>
         </div>
       </td>
       <td className="pr-4 pl-2 ">
