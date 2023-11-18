@@ -21,39 +21,41 @@ const SideMenu = () => {
       </div>
 
       {/* Dummy icons */}
-      <div className="flex flex-col p-4 px-8 space-y-4">
-        <div className="flex items-center space-x-3">
-          <GrAppsRounded size={22} color={"#6d87cb"} />
-          <div className="text-[#6d87cb]">Dashboard</div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <MdPieChart size={22} color={"#6d87cb"} />
-          <div className="text-[#6d87cb]">Charts</div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <MdCalendarMonth size={22} color={"#6d87cb"} />
-          <div className="text-[#6d87cb]">Calendar</div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <MdCreditCard size={22} color={"#6d87cb"} />
-          <div className="text-[#6d87cb]">Cards</div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <HiOutlineDocumentReport size={22} color={"#6d87cb"} />
-          <div className="text-[#6d87cb]">Reports</div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <IoMdNotificationsOutline size={22} color={"#6d87cb"} />
-          <div className="text-[#6d87cb]">Notifications</div>
-        </div>
-        <div className="flex flex-col pt-20 space-y-4 ">
-          <div className="flex items-center  space-x-3">
-            <IoMdInformationCircleOutline size={22} color={"#6d87cb"} />
-            <div className="text-[#6d87cb]">About</div>
+      <div className="flex-col justify-between flex px-8 mt-8  h-[70vh]">
+        <div className="flex flex-1  flex-col   space-y-4">
+          <div className="flex items-center space-x-3 text-white hover:cursor-pointer hover:text-white">
+            <GrAppsRounded size={20} color={""} />
+            <div className="text-sm">Dashboard</div>
           </div>
-          <div className="flex items-center  space-x-3">
-            <IoSettingsOutline size={22} color={"#6d87cb"} />
-            <div className="text-[#6d87cb]">Settings</div>
+          <div className="flex items-center space-x-3 hover:cursor-pointer hover:text-white text-[#6d87cb] duration-200">
+            <MdPieChart size={20} color={""} />
+            <div className="text-sm">Charts</div>
+          </div>
+          <div className="flex items-center space-x-3 hover:cursor-pointer hover:text-white text-[#6d87cb] duration-200">
+            <MdCalendarMonth size={20} color={""} />
+            <div className="text-sm">Calendar</div>
+          </div>
+          <div className="flex items-center space-x-3 hover:cursor-pointer hover:text-white text-[#6d87cb] duration-200">
+            <MdCreditCard size={20} color={""} />
+            <div className="text-sm">Cards</div>
+          </div>
+          <div className="flex items-center space-x-3 hover:cursor-pointer hover:text-white text-[#6d87cb] duration-200">
+            <HiOutlineDocumentReport size={20} color={""} />
+            <div className="text-sm">Reports</div>
+          </div>
+          <div className="flex items-center space-x-3 hover:cursor-pointer hover:text-white text-[#6d87cb] duration-200">
+            <IoMdNotificationsOutline size={20} color={""} />
+            <div className="text-sm">Notifications</div>
+          </div>
+        </div>
+        <div className="flex flex-col  space-y-4 ">
+          <div className="flex items-center  space-x-3 hover:cursor-pointer hover:text-white text-[#6d87cb] duration-200">
+            <IoMdInformationCircleOutline size={20} />
+            <div className="text-sm">About</div>
+          </div>
+          <div className="flex items-center  space-x-3 hover:cursor-pointer hover:text-white text-[#6d87cb] duration-200">
+            <IoSettingsOutline size={20} />
+            <div className="text-sm">Settings</div>
           </div>
         </div>
       </div>
