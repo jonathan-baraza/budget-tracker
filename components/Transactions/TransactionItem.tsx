@@ -1,19 +1,23 @@
 "use client";
-import { useState } from "react";
+
 import { GiCash } from "react-icons/gi";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { getDateTime } from "@/utils/getDateTime";
-import { transactionType } from "@/redux/features/budgetSlice";
+import {
+  transactionType,
+  deleteTransaction,
+} from "@/redux/features/budgetSlice";
+import { useAppDispatch } from "@/redux/hooks";
 
 const TransactionItem = ({
-  transaction: { name, amount, type, date, id },
+  transaction,
   no,
 }: {
   transaction: transactionType;
   no: string;
 }) => {
-  const [isIncome, setIsIncome] = useState<boolean>(true);
+  const { name, amount, type, date, id } = transaction;
+  const dispatch = useAppDispatch();
 
   return (
     <tr className="border-b border-gray-300">
@@ -45,6 +49,9 @@ const TransactionItem = ({
       <td className="py-3 text-xs text-gray-600  flex justify-end pr-2">
         <RiDeleteBin6Fill
           size={18}
+          onClick={() => {
+            dispatch(deleteTransaction(transaction));
+          }}
           className={"text-red-500 cursor-pointer hover:scale-105 duration-100"}
         />
       </td>
