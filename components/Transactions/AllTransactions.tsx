@@ -2,7 +2,7 @@ import React from "react";
 import TransactionItem from "./TransactionItem";
 import { FaLongArrowAltUp, FaLongArrowAltDown, FaList } from "react-icons/fa";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { sortTransactions } from "@/redux/features/budgetSlice";
+import { filterTransactions } from "@/redux/features/budgetSlice";
 import { useDispatch } from "react-redux";
 const AllTransactions = () => {
   const { transactions } = useAppSelector((state) => state.budget);
@@ -17,7 +17,7 @@ const AllTransactions = () => {
           <div className="flex space-x-4 items-center">
             <div
               onClick={() => {
-                dispatch(sortTransactions("all"));
+                dispatch(filterTransactions("all"));
               }}
               className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg"
             >
@@ -26,21 +26,21 @@ const AllTransactions = () => {
             </div>
             <div
               onClick={() => {
-                dispatch(sortTransactions("Income"));
+                dispatch(filterTransactions("Income"));
               }}
               className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg"
             >
               <FaLongArrowAltUp size={16} className="text-green-500" />
-              <span>Sort Income</span>
+              <span>Filter Income</span>
             </div>
             <div
               onClick={() => {
-                dispatch(sortTransactions("Expense"));
+                dispatch(filterTransactions("Expense"));
               }}
               className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg"
             >
               <FaLongArrowAltDown className="text-red-500" size={16} />
-              <span>Sort Expenses</span>
+              <span>Filter Expenses</span>
             </div>
           </div>
         </div>

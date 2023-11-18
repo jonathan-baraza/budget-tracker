@@ -53,7 +53,7 @@ const budgetSlice = createSlice({
       localStorage.setItem("transactions", JSON.stringify(state.transactions));
       localStorage.setItem("balance", JSON.stringify(state.balance));
     },
-    sortTransactions: (state, action: PayloadAction<string>) => {
+    filterTransactions: (state, action: PayloadAction<string>) => {
       if (action.payload === "all") {
         state.balance = state.holdBalance;
         state.transactions = state.allTransactions;
@@ -95,6 +95,6 @@ export const {
   addTransaction,
   deleteTransaction,
   toggleShowAddForm,
-  sortTransactions,
+  filterTransactions,
 } = budgetSlice.actions;
 export default budgetSlice.reducer;
