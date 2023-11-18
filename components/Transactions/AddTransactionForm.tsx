@@ -1,10 +1,18 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { GiCash } from "react-icons/gi";
 import { useAppDispatch } from "@/redux/hooks";
 import { toggleShowAddForm } from "@/redux/features/budgetSlice";
 const AddTransactionForm = () => {
   const dispatch = useAppDispatch();
+  const [name, setName] = useState<string>("");
+  const [amount, setAmount] = useState<number>();
+  const [type, setType] = useState<string>("");
+
+  //   Form validations
+  const handleValidate = () => {};
+
   return (
     <div
       className="absolute inset-0 flex items-center justify-center"
@@ -20,11 +28,11 @@ const AddTransactionForm = () => {
             className="hover:cursor-pointer hover:scale-x-110 duration-100"
           />
         </div>
-
         <h2 className="font-bold mb-4 flex items-center">
           <GiCash size={20} className="mr-2" />
           Add a new Transaction
         </h2>
+        {type} {amount} {name}
         {/* Name */}
         <div className="text-sm flex flex-col">
           <label className="font-semibold">Name</label>
@@ -32,6 +40,8 @@ const AddTransactionForm = () => {
             className="border text-xs p-2 rounded mt-2 outline-none"
             type={"string"}
             name={"name"}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="e.g paying for rent"
           />
         </div>
@@ -41,8 +51,10 @@ const AddTransactionForm = () => {
           <input
             className="border text-xs p-2 rounded mt-2 outline-none"
             type={"number"}
-            name={"name"}
+            name={"amount"}
             placeholder="e.g 1000"
+            value={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
           />
         </div>
         {/* Type */}
@@ -56,6 +68,7 @@ const AddTransactionForm = () => {
                 name="transactionType"
                 type={"radio"}
                 value={"Income"}
+                onClick={() => setType("Income")}
               />
             </span>
             <span className="flex items-center space-x-2 m-3">
@@ -65,12 +78,16 @@ const AddTransactionForm = () => {
                 name="transactionType"
                 type={"radio"}
                 value={"Expense"}
+                onClick={() => setType("Expense")}
               />
             </span>
           </div>
         </div>
         <div className="flex justify-end">
-          <button className="rounded-lg border-none text-white text-sm bg-[#0f1a3a] px-4 py-2 hover:bg-[#090f20] duration-100">
+          <button
+            onClick={handleValidate}
+            className="rounded-lg border-none text-white text-sm bg-[#0f1a3a] px-4 py-2 hover:bg-[#090f20] duration-100"
+          >
             Submit
           </button>
         </div>

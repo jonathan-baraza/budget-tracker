@@ -52,11 +52,11 @@ const TransactionItem = () => {
       <td className="py-3 text-xs text-gray-600 text-end">
         Rent payment for November.
       </td>
-      <td className="py-3 text-xs text-gray-600 text-end flex justify-center">
+      <td className="py-3 text-xs text-gray-600  flex justify-end pr-2">
         <RiDeleteBin6Fill
           size={18}
           className={
-            "text-red-500 cursor-pointer hover: scale-105 duration-100"
+            "text-red-500 cursor-pointer hover:scale-105 duration-100"
           }
         />
       </td>
