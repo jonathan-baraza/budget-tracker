@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface transactionType {
   name: string;
@@ -9,11 +10,13 @@ interface transactionType {
 interface budgetType {
   balance: number;
   transactions?: transactionType[];
+  showAddForm: boolean;
 }
 
 const initialState: budgetType = {
   balance: 0,
   transactions: [],
+  showAddForm: false,
 };
 
 const budgetSlice = createSlice({
@@ -26,8 +29,12 @@ const budgetSlice = createSlice({
     deleteTransaction: (state, action) => {
       state.balance = state.balance - 20;
     },
+    toggleShowAddForm: (state, action: PayloadAction<boolean>) => {
+      state.showAddForm = action.payload;
+    },
   },
 });
 
-export const { addTransaction, deleteTransaction } = budgetSlice.actions;
+export const { addTransaction, deleteTransaction, toggleShowAddForm } =
+  budgetSlice.actions;
 export default budgetSlice.reducer;
