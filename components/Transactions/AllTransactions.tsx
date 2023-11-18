@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import TransactionItem from "./TransactionItem";
 import { FaLongArrowAltUp, FaLongArrowAltDown, FaList } from "react-icons/fa";
@@ -77,7 +78,7 @@ const AllTransactions = () => {
       <div className="w-[30%] flex justify-center flex-col space-y-4">
         <img className="w-full" alt="Expense photo" src={"/finance2.png"} />
         <h2 className="text-sm italic font-semibold text-center">
-          &quot;Your way to financial Freedom&qout;
+          &quot;Your way to financial Freedom&quot;
         </h2>
       </div>
     </div>

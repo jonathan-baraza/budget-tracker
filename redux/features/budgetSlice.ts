@@ -17,11 +17,11 @@ export interface budgetType {
   showAddForm: boolean;
 }
 
-const savedTransactions = localStorage?.getItem("transactions");
+const savedTransactions = typeof window!=="undefined" && localStorage?.getItem("transactions");
 
 const initialState: budgetType = {
-  balance: Number(JSON.parse(localStorage.getItem("balance") || "0")),
-  holdBalance: Number(JSON.parse(localStorage.getItem("balance") || "0")),
+  balance: Number(JSON.parse(typeof window!=="undefined"?(localStorage.getItem("balance") || "0"):"0")),
+  holdBalance: Number(JSON.parse(typeof window!=="undefined"?(localStorage.getItem("balance") || "0"):"0")),
   allTransactions: savedTransactions ? JSON.parse(savedTransactions) : [],
   transactions: savedTransactions ? JSON.parse(savedTransactions) : [],
   showAddForm: false,

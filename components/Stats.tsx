@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { GiCash } from "react-icons/gi";
 import { GrCurrency } from "react-icons/gr";
@@ -17,14 +18,14 @@ const Stats = () => {
         <GrCurrency size={16} />
         <span>Currency: KES</span>
       </div>
-      <div className="flex items-center space-x-1 text-gray-200 bg-[#132150] px-3 py-2 text-xs rounded-lg">
+      {/* <div className="flex items-center space-x-1 text-gray-200 bg-[#132150] px-3 py-2 text-xs rounded-lg">
         <FaLongArrowAltUp size={16} className="text-green-500" />
         <span>Collective Income: KES</span>
       </div>
       <div className="flex items-center space-x-1 text-gray-200 bg-[#132150] px-3 py-2 text-xs rounded-lg">
         <FaLongArrowAltDown className="text-red-500" size={16} />
         <span>Collective Expenses: KES</span>
-      </div>
+      </div> */}
     </div>
   );
 };
