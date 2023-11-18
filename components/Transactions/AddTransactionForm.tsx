@@ -4,6 +4,7 @@ import { MdClose } from "react-icons/md";
 import { GiCash } from "react-icons/gi";
 import { useAppDispatch } from "@/redux/hooks";
 import { toggleShowAddForm } from "@/redux/features/budgetSlice";
+import { toast } from "react-toastify";
 const AddTransactionForm = () => {
   const dispatch = useAppDispatch();
   const [name, setName] = useState<string>("");
@@ -11,7 +12,15 @@ const AddTransactionForm = () => {
   const [type, setType] = useState<string>("");
 
   //   Form validations
-  const handleValidate = () => {};
+  const handleValidate = () => {
+    if (!name) {
+      toast.error("Please enter the transaction's name");
+    } else if (!amount || amount <= 0) {
+      toast.error("Please a valid amount");
+    } else if (!type) {
+      toast.error("Please select a transaction type");
+    }
+  };
 
   return (
     <div
