@@ -1,20 +1,44 @@
 import React from "react";
 import TransactionItem from "./TransactionItem";
-import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
-import { useAppSelector } from "@/redux/hooks";
+import { FaLongArrowAltUp, FaLongArrowAltDown, FaList } from "react-icons/fa";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { sortTransactions } from "@/redux/features/budgetSlice";
+import { useDispatch } from "react-redux";
 const AllTransactions = () => {
   const { transactions } = useAppSelector((state) => state.budget);
+  const dispatch = useDispatch();
   return (
-    <div className="w-full  mt-4">
-      <div className="w-full bg-red-200 min-h-[50vh]">
-        <div className="flex justify-between items-center w-[70%] my-1">
-          <div className="mb-1">My Transactions ({transactions?.length})</div>
+    <div className="w-full flex  mt-4">
+      <div className="w-[70%]  min-h-[50vh]">
+        <div className="flex justify-between items-center w-full my-3">
+          <div className="mb-1 font-semibold">
+            My Transactions ({transactions?.length})
+          </div>
           <div className="flex space-x-4 items-center">
-            <div className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg">
+            <div
+              onClick={() => {
+                dispatch(sortTransactions("all"));
+              }}
+              className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg"
+            >
+              <FaList size={16} className="text-white" />
+              <span>All transactions</span>
+            </div>
+            <div
+              onClick={() => {
+                dispatch(sortTransactions("Income"));
+              }}
+              className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg"
+            >
               <FaLongArrowAltUp size={16} className="text-green-500" />
               <span>Sort Income</span>
             </div>
-            <div className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg">
+            <div
+              onClick={() => {
+                dispatch(sortTransactions("Expense"));
+              }}
+              className="flex items-center space-x-1 text-gray-200 bg-[#132150] cursor-pointer  px-3 py-1 text-xs rounded-lg"
+            >
               <FaLongArrowAltDown className="text-red-500" size={16} />
               <span>Sort Expenses</span>
             </div>
@@ -22,7 +46,10 @@ const AllTransactions = () => {
         </div>
 
         {/* Transactions table */}
-        <div className="w-[70%]">
+        <div
+          style={{ overflowX: "auto" }}
+          className="w-full h-[68vh] overscroll-y-auto  pb-4"
+        >
           <table className="w-full">
             <thead className="bg-[#0f1a3a] p-2 text-gray-200 text-xs">
               <tr>
@@ -34,7 +61,7 @@ const AllTransactions = () => {
                 <td className="text-end pl-6 pr-2">ACTION</td>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="w-full">
               {transactions &&
                 transactions.map((transaction, index) => (
                   <TransactionItem
@@ -46,6 +73,12 @@ const AllTransactions = () => {
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="w-[30%] flex justify-center flex-col space-y-4">
+        <img className="w-full" alt="Expense photo" src={"/finance2.png"} />
+        <h2 className="text-sm italic font-semibold text-center">
+          &quot;Your way to financial Freedom&qout;
+        </h2>
       </div>
     </div>
   );

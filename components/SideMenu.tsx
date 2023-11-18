@@ -19,14 +19,14 @@ const SideMenu = () => {
       <div className="w-full flex justify-center pt-4">
         <div className="bg-[#13224a] text-white p-4 space-y-3 rounded-lg w-fit m-3 flex items-center justify-center flex-col">
           <div className="text-2xl font-bold">
-            Ksh {balance.toLocaleString()}/=
+            KES {balance.toLocaleString()}/=
           </div>
           <div className="text-sm ">Current balance</div>
         </div>
       </div>
 
       {/* Dummy icons */}
-      <div className="flex-col justify-between flex px-8 mt-8  h-[70vh]">
+      <div className="flex-col justify-between flex px-8 mt-8  h-[65vh]">
         <div className="flex flex-1  flex-col   space-y-4">
           <div className="flex items-center space-x-3 text-white hover:cursor-pointer hover:text-white">
             <GrAppsRounded size={20} color={""} />

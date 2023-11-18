@@ -11,13 +11,19 @@ export interface transactionType {
 
 export interface budgetType {
   balance: number;
+  allTransactions?: transactionType[];
   transactions?: transactionType[];
+  holdBalance: number;
   showAddForm: boolean;
 }
 
+const savedTransactions = localStorage?.getItem("transactions");
+
 const initialState: budgetType = {
-  balance: 0,
-  transactions: [],
+  balance: Number(JSON.parse(localStorage.getItem("balance") || "0")),
+  holdBalance: Number(JSON.parse(localStorage.getItem("balance") || "0")),
+  allTransactions: savedTransactions ? JSON.parse(savedTransactions) : [],
+  transactions: savedTransactions ? JSON.parse(savedTransactions) : [],
   showAddForm: false,
 };
 
@@ -33,9 +39,35 @@ const budgetSlice = createSlice({
       }
       if (action.payload.type === "Expense") {
         state.balance = state.balance - action.payload.amount;
+        state.holdBalance = state.balance - action.payload.amount;
       } else {
         state.balance = state.balance + action.payload.amount;
+        state.holdBalance = state.balance + action.payload.amount;
       }
+
+      //call slice to update local storage
+      budgetSlice.caseReducers.updateLocalStorage(state);
+    },
+    updateLocalStorage: (state) => {
+      //Fn to update local storage data
+      localStorage.setItem("transactions", JSON.stringify(state.transactions));
+      localStorage.setItem("balance", JSON.stringify(state.balance));
+    },
+    sortTransactions: (state, action: PayloadAction<string>) => {
+      if (action.payload === "all") {
+        state.balance = state.holdBalance;
+        state.transactions = state.allTransactions;
+        return;
+      }
+      const filteredTransactions = state.allTransactions?.filter(
+        (transaction) => transaction.type === action.payload
+      );
+      state.transactions = filteredTransactions;
+      let filteredBalance = 0;
+      filteredTransactions?.forEach((transaction) => {
+        filteredBalance = filteredBalance + transaction.amount;
+      });
+      state.balance = filteredBalance;
     },
     deleteTransaction: (state, action: PayloadAction<transactionType>) => {
       state.transactions = state.transactions?.filter(
@@ -48,13 +80,21 @@ const budgetSlice = createSlice({
       } else {
         state.balance = state.balance - action.payload.amount;
       }
+
+      //call slice to update local storage
+      budgetSlice.caseReducers.updateLocalStorage(state);
     },
+
     toggleShowAddForm: (state, action: PayloadAction<boolean>) => {
       state.showAddForm = action.payload;
     },
   },
 });
 
-export const { addTransaction, deleteTransaction, toggleShowAddForm } =
-  budgetSlice.actions;
+export const {
+  addTransaction,
+  deleteTransaction,
+  toggleShowAddForm,
+  sortTransactions,
+} = budgetSlice.actions;
 export default budgetSlice.reducer;
