@@ -3,12 +3,17 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { GiCash } from "react-icons/gi";
 import { useAppDispatch } from "@/redux/hooks";
-import { toggleShowAddForm } from "@/redux/features/budgetSlice";
+import {
+  toggleShowAddForm,
+  addTransaction,
+} from "@/redux/features/budgetSlice";
 import { toast } from "react-toastify";
+import { getDateTime } from "@/utils/getDateTime";
+import { v4 as uuid } from "uuid";
 const AddTransactionForm = () => {
   const dispatch = useAppDispatch();
   const [name, setName] = useState<string>("");
-  const [amount, setAmount] = useState<number>();
+  const [amount, setAmount] = useState<number>(0);
   const [type, setType] = useState<string>("");
 
   //   Form validations
@@ -19,7 +24,22 @@ const AddTransactionForm = () => {
       toast.error("Please a valid amount");
     } else if (!type) {
       toast.error("Please select a transaction type");
+    } else {
+      handleSubmit();
     }
+  };
+
+  //   Adding the transaction
+  const handleSubmit = () => {
+    //generate transaction id using uuid.
+    dispatch(
+      addTransaction({ id: uuid(), name, amount, type, date: getDateTime() })
+    );
+    closeForm();
+  };
+
+  const closeForm = () => {
+    dispatch(toggleShowAddForm(false));
   };
 
   return (
@@ -30,9 +50,7 @@ const AddTransactionForm = () => {
       <div className="bg-white rounded-lg p-6 w-1/2">
         <div className="w-full flex justify-end">
           <MdClose
-            onClick={() => {
-              dispatch(toggleShowAddForm(false));
-            }}
+            onClick={closeForm}
             size={20}
             className="hover:cursor-pointer hover:scale-x-110 duration-100"
           />
@@ -41,7 +59,7 @@ const AddTransactionForm = () => {
           <GiCash size={20} className="mr-2" />
           Add a new Transaction
         </h2>
-        {type} {amount} {name}
+
         {/* Name */}
         <div className="text-sm flex flex-col">
           <label className="font-semibold">Name</label>
